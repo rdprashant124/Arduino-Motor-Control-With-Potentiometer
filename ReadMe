@@ -1,0 +1,23 @@
+1-DOF DC Motor Speed Control Using Potentiometer(Arduino+L293D)
+1. OVERVIEW
+This project implements a 1 degree of freedom(rotation only) DC Motor speed control system using:
+- Arduino
+- L293D motor driver IC
+- DC Motor
+- Potentiometer 10K
+- External Power Supply Module
+- Jumper Wires
+All of the materials are from Elegoo Super Starter Kit. The motor speed is controlled by varying the voltage across a potentiometer.
+The analog voltage is read by the Arduino, processed and converted into a PWM signal that drives the DC motor through the L293D driver.
+
+2. OBJECTIVES
+ -To understand analog voltage reading using Arduino ADC and analogRead
+ -Implement PWM-based motor speed control 
+ -Combine input sensing and motor actuation systems
+ -Apply basic signal smoothing using moving average filter
+ -Demonstration of integration of hardware and software
+
+3. SYSTEM ARCHITECTURE
+Input Stage: Analog Voltage(5V)->Potentiometer->Analog Voltage(0-5V)->ArduinoADC(A3)
+Processing Stage: 10-sample moving average filter->Voltage Scaling(ADC to Volts) -> Voltage to PWM Conversion(0-5V to 0-255)
+Output Stage: PWM Signal -> L293D Motor Driver -> DC Motor speed control
