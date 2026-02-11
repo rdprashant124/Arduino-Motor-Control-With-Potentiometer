@@ -21,3 +21,22 @@ The analog voltage is read by the Arduino, processed and converted into a PWM si
 Input Stage: Analog Voltage(5V)->Potentiometer->Analog Voltage(0-5V)->ArduinoADC(A3)
 Processing Stage: 10-sample moving average filter->Voltage Scaling(ADC to Volts) -> Voltage to PWM Conversion(0-5V to 0-255)
 Output Stage: PWM Signal -> L293D Motor Driver -> DC Motor speed control
+
+4. HARDWARE COMPONENTS
+Arduino                 - Microcontroller
+L293D                   - H-bridge Motor Driver
+DC Motor                - Actuator
+Potentiometer           - Speed Reference Input
+Power Supply Module     - Motor power source
+Breadboard+Jumper Wires - Circuit Prototyping
+
+5. CIRCUIT DESCRIPTION
+5.1 Potentiometer Connections:
+Left Pin   - 5V from Arduino
+Right Pin  - GND
+Middle Pin - Arduino A3
+This sets up a variable voltage divider between 0V and 5V.
+
+5.2 L293D Connections:
+Pin 1(Enable) -> Arduino PWM pin 5
+Pin 2
