@@ -39,4 +39,57 @@ This sets up a variable voltage divider between 0V and 5V.
 
 5.2 L293D Connections:
 Pin 1(Enable) -> Arduino PWM pin 5
-Pin 2
+Pin 2(Input1) -> Arduino Pin 13
+Pin 7(Input2) -> Arudino Pin 12
+L293D Output Pins3 and 6 -> DC Motor 
+L293D Motor Supply Pin 8 -> External 5V supply
+Common GND shared with Arduino
+
+6. SOFTWARE IMPLEMENTATION
+PROVIDED IN control_motor.ino
+
+7. KEY ENGINEERING CONCEPTS APPLIED
+7.1 Analog to Digital Conversion(ADC)
+Arduino ADC:
+- 10 bit resolution
+- Range: 0-1023
+- Reference voltage: 5V
+
+7.2 Voltage calculation:
+V = ADC*5/1023
+
+7.3 Moving Average Filter
+Filter used to smooth out noisy analog readings
+
+average = take previous 10 values and divide it by 10 and output the result
+
+7.4 PWM Motor speed control
+Arduino PWM:
+- Range: 00-255
+- Represents duty cycle
+Mapping:
+PWM = Voltage*255/5
+
+Higher duty cycle = Higher average motor voltage thus resulting in actuation of motor with higher speed
+
+7.5 H-Bridge Control with L293D
+- dir 1 HIGH, dir 2 LOW  = forward rotation
+- dir 2 HIGH, dir 1 LOW = Backward rotation
+- PWM applied to enable pin controls speed
+
+8. OBSERVATIONS
+- Motor speed responds proportionally to potentiometer rotation
+- Signal smoothing reduces sudden speed jumps
+- Incorrect grounding initially caused constant 5V reading
+- Motor speed limited when powered by 3.3V, full speed of rotation achieved at 5V
+
+9. CHALLENGES FACED
+- Incorrect grounding resulting in constant ADC reading
+- PWM Scaling done for 5V but initial mistake connection with 3.3V supply
+
+10. IMPROVEMENTS AND POSSIBLE FUTURE WORK
+- Add bidirectional control using potentiometer midpoint
+- Implement closed loop control using encoder feedback
+- Replace simple mapping with PID control
+- Add serial plotter visualization for speed vs voltage
+- Replace DC Motor with BLDC for higher level control experiments
