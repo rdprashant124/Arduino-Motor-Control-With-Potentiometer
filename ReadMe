@@ -46,7 +46,7 @@ L293D Motor Supply Pin 8 -> External 5V supply
 Common GND shared with Arduino
 
 6. SOFTWARE IMPLEMENTATION
-PROVIDED IN control_motor.ino
+PROVIDED IN motor_control.ino
 
 7. KEY ENGINEERING CONCEPTS APPLIED
 7.1 Analog to Digital Conversion(ADC)
